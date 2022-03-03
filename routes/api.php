@@ -26,9 +26,9 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('create-service', [ServiceController::class, 'store']);
 Route::delete('delete-service/{id}', [ServiceController::class, 'destroy']);
-Route::post('subscription', [SubscriptionController::class, 'store']);
-Route::delete('unsubscription/{id}', [ServiceController::class, 'destroy']);
-Route::post('payment', [PaymentController::class, 'store']);
+Route::post('subscription', [SubscriptionController::class, 'store'])->middleware('auth:sanctum');
+Route::delete('unsubscription/{id}', [ServiceController::class, 'destroy'])->middleware('auth:sanctum');
+Route::post('payment', [PaymentController::class, 'store'])->middleware('auth:sanctum');
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
